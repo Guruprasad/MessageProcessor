@@ -1,4 +1,29 @@
+
 # MessageProcessor
+
+### Problem Statement
+
+Design a MessageProcessor module that reads UDP messages from multiple files with following
+format without any gap (i.e. no sequence numbers will be missing) but the packets may be duplicated and out
+of sequence.
+
+| Field | DataType | Sample value |
+| ------------ | ------------ | ------------ |
+| Msg |Type Char | ‘A’|
+|SeqNumber|Unsigned long|329231|
+|Side |Char |‘B’|
+|Size |Unsigned long |2000|
+|Ticker|String|“ABC”|
+|Price |Double |23.23|
+
+Message Processor should be able to read multiple out of sequence messages files (infile1.txt, infile2.txt) and write back sequenced messages removing duplication in single file outfile.txt.
+
+### Design
+- used STL map container to sequence and to avoid duplicates
+- Code reads each of the input files and inserts them into map.
+- sequenced and uniq map is then written back into output file.
+
+### Build & Run
 
 $ g++ -o MessageProcessor MessageProcessor.cpp -std=c++11
 $ g++ -o MessageProcessorMultiThreaded -pthread MessageProcessorMultiThreaded.cpp -std=c++11
@@ -7,7 +32,8 @@ $ chmod 777 MessageProcessor MessageProcessorMultiThreaded
 
 $ ./MessageProcessor Infile10.txt Infile13.txt Infile2.txt Infile5.txt Infile8.txt Infile11.txt Infile14.txt  Infile3.txt Infile6.txt Infile9.txt Infile12.txt Infile1.txt Infile4.txt Infile7.txt Outfile.txt
 
-<pre>Message Processor reading files 
+<pre>
+Message Processor reading files 
 --------------------------------------------------------
 readUDPMsgFromFile() :: reading file Infile10.txt
 read 27 UDP messages
@@ -199,5 +225,3 @@ G	929251		h	2006	GHI	23.23
 154 unique UDP messages in total
 </pre>
 
-
-  

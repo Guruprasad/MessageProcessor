@@ -30,6 +30,7 @@ $ g++ -o MessageProcessorMultiThreaded -pthread MessageProcessorMultiThreaded.cp
 
 $ chmod 777 MessageProcessor MessageProcessorMultiThreaded
 
+### The Binary takes n number of command line arguments, where the first n-1 args are input files and the nth arg is output file
 $ ./MessageProcessor Infile10.txt Infile13.txt Infile2.txt Infile5.txt Infile8.txt Infile11.txt Infile14.txt  Infile3.txt Infile6.txt Infile9.txt Infile12.txt Infile1.txt Infile4.txt Infile7.txt Outfile.txt
 
 <pre>
